@@ -1,0 +1,10 @@
+npx create-react-app my-todo-app01
+cd my-todo-app01
+npm start
+
+
+npx create-react-app my-todo-app02
+cd my-todo-app02
+Update
+
+Implement task completion toggle with useState

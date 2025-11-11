@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Launch Chrome with Web Security Disabled",
+      "type": "shell",
+      "command": "chrome",
+      "args": [
+        "--disable-web-security",
+        "--user-data-dir=C:/chrome_dev",
+        "http://localhost:8080"  // Change this URL to your local server
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

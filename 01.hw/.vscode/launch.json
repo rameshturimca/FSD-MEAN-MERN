@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against index.html",
+      "file": "${workspaceFolder}/index.html",
+      "webRoot": "${workspaceFolder}",
+      "sourceMapPathOverrides": {
+        "webpack:///*": "${webRoot}/*"
+      }
+    }
+  ]
+}
+
+
+// {
+//   "version": "0.2.0",
+//   "configurations": [
+//     {
+//       "type": "chrome",
+//       "request": "launch",
+//       "name": "Launch Chrome against localhost",
+//       "url": "http://127.0.0.1:5500",  // Update this if you're using http-server
+//       "webRoot": "${workspaceFolder}",
+//       "sourceMapPathOverrides": {
+//         "webpack:///*": "${webRoot}/*"
+//       }
+//     }
+//   ]
+// }
