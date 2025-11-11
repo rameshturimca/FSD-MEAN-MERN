@@ -3,8 +3,11 @@ cd my-todo-app01
 npm start
 
 
-npx create-react-app my-todo-app02
-cd my-todo-app02
-Update
+cd my-todo-app01
+mkdir backend
+cd backend
 
-Implement task completion toggle with useState
+npm init -y
+npm install express cors
+
+
