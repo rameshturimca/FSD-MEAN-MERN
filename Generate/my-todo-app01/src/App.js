@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+
+import Todo from './components/Todo';
+import Login from './components/Login';
 import './App.css';
-import Todo from './Todo';
-import Login from './Login';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
