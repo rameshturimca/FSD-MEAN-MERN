@@ -12,3 +12,4 @@ npm install express cors
 
 To Run Node Project:  node server.js
 
+To run public url api: npm install axios
