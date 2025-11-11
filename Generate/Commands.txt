@@ -10,4 +10,5 @@ cd backend
 npm init -y
 npm install express cors
 
+To Run Node Project:  node server.js
 

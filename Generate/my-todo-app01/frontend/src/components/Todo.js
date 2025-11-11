@@ -1,79 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Todo.css';
 
 function Todo() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
-  const [editIndex, setEditIndex] = useState(null);
-  const [editText, setEditText] = useState('');
+
+  // Fetch from backend
+  useEffect(() => {
+    fetch('http://localhost:5000/api/todos')
+      .then((res) => res.json())
+      .then((data) => setTasks(data))
+      .catch((err) => console.error('Error loading todos:', err));
+  }, []);
 
   const handleAddTask = () => {
     if (newTask.trim()) {
-      setTasks([...tasks, { text: newTask, completed: false }]);
+      const newItem = { id: tasks.length + 1, task: newTask, completed: false };
+      setTasks([...tasks, newItem]);
       setNewTask('');
     }
   };
 
-  const handleDelete = (index) => {
-    setTasks(tasks.filter((_, i) => i !== index));
-  };
-
-  const handleEdit = (index) => {
-    setEditIndex(index);
-    setEditText(tasks[index].text);
-  };
-
-  const handleUpdate = () => {
-    if (editText.trim()) {
-      const updated = [...tasks];
-      updated[editIndex].text = editText;
-      setTasks(updated);
-      setEditIndex(null);
-      setEditText('');
-    }
-  };
-
-  const toggleComplete = (index) => {
-    const updated = [...tasks];
-    updated[index].completed = !updated[index].completed;
-    setTasks(updated);
+  const toggleCompletion = (id) => {
+    setTasks(
+      tasks.map((t) =>
+        t.id === id ? { ...t, completed: !t.completed } : t
+      )
+    );
   };
 
   return (
     <div className="todo">
-      <h2>Todo List</h2>
-
-      <div className="input-area">
-        <input
-          type="text"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          placeholder="Add a new task"
-        />
-        <button onClick={handleAddTask}>Add Task</button>
-      </div>
+      <h2>Todo List (from Backend)</h2>
+      <input
+        type="text"
+        value={newTask}
+        onChange={(e) => setNewTask(e.target.value)}
+        placeholder="Add new task"
+      />
+      <button onClick={handleAddTask}>Add Task</button>
 
       <ul>
-        {tasks.map((task, index) => (
-          <li key={index} className={task.completed ? 'completed' : ''}>
-            {editIndex === index ? (
-              <>
-                <input
-                  type="text"
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                />
-                <button onClick={handleUpdate}>Update</button>
-              </>
-            ) : (
-              <>
-                <span onClick={() => toggleComplete(index)}>{task.text}</span>
-                <div className="action-buttons">
-                  <button onClick={() => handleEdit(index)}>Edit</button>
-                  <button onClick={() => handleDelete(index)}>Delete</button>
-                </div>
-              </>
-            )}
+        {tasks.map((task) => (
+          <li
+            key={task.id}
+            style={{
+              textDecoration: task.completed ? 'line-through' : 'none',
+              color: task.completed ? 'gray' : 'black',
+            }}
+          >
+            {task.task}
+            <div>
+              <button onClick={() => toggleCompletion(task.id)}>
+                {task.completed ? 'Undo' : 'Done'}
+              </button>
+            </div>
           </li>
         ))}
       </ul>

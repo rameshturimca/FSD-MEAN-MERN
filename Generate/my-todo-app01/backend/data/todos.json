@@ -1,0 +1,12 @@
+[
+  { "id": 1, "task": "Learn React fundamentals", "completed": false },
+  { "id": 2, "task": "Setup Node.js backend", "completed": true },
+  { "id": 3, "task": "Integrate React with backend API", "completed": false },
+  { "id": 4, "task": "Implement Add Task feature", "completed": true },
+  { "id": 5, "task": "Implement Edit and Delete feature", "completed": false },
+  { "id": 6, "task": "Add completion toggle functionality", "completed": true },
+  { "id": 7, "task": "Improve UI with separate CSS", "completed": false },
+  { "id": 8, "task": "Test application with sample data", "completed": true },
+  { "id": 9, "task": "Deploy app to local server", "completed": false },
+  { "id": 10, "task": "Document setup and usage guide", "completed": true }
+]
