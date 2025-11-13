@@ -4,3 +4,14 @@ mkdir config
 mkdir models
 npm install pool
 npm install express
+
+
+Invoke-WebRequest -Uri http://localhost:3000/api/customers -Method GET
+
+Invoke-WebRequest -Uri http://localhost:3000/api/customers -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"first_name":"John","last_name":"Doe","email":"john.doe@example.com","city":"New York","country":"USA","join_date":"2025-11-13","total_spent":1000}'
+
+Invoke-WebRequest -Uri http://localhost:3000/api/customers/1 -Method GET
+
+Invoke-WebRequest -Uri http://localhost:3000/api/customers/1 -Method PUT -Headers @{"Content-Type"="application/json"} -Body '{"first_name":"Jane","last_name":"Doe","email":"jane.doe@example.com","city":"Los Angeles","country":"USA","join_date":"2025-11-14","total_spent":2000}'
+
+Invoke-WebRequest -Uri http://localhost:3000/api/customers/1 -Method DELETE
