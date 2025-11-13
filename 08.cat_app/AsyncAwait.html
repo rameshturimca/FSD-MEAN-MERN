@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async/Await Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .user-data {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Async/Await User Data Fetch Example</h1>
+    
+    <button id="fetchDataButton">Fetch User Data</button>
+    
+    <div id="userDataContainer"></div>
+
+    <script>
+        // Simulating an API call that returns a promise
+        function fetchDataFromAPI(userId) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const users = {
+                        1: { name: 'Alice', age: 25 },
+                        2: { name: 'Bob', age: 30 },
+                        3: { name: 'Charlie', age: 35 }
+                    };
+                    
+                    // If the user ID doesn't exist, reject the promise
+                    if (!users[userId]) {
+                        reject(`User with ID ${userId} not found.`);
+                    } else {
+                        resolve(users[userId]); // Resolve with user data
+                    }
+                }, 2000); // Simulate 2-second API delay
+            });
+        }
+
+        // Async function to get user data using await
+        async function getUserData(userId) {
+            try {
+                const userData = await fetchDataFromAPI(userId); // Wait for the promise to resolve
+                displayUserData(userData); // Display data on the page
+            } catch (error) {
+                displayError(error); // Display error message on the page
+            }
+        }
+
+        // Function to display user data on the page
+        function displayUserData(data) {
+            const container = document.getElementById('userDataContainer');
+            container.innerHTML = `
+                <div class="user-data">
+                    <h3>User Data</h3>
+                    <p><strong>Name:</strong> ${data.name}</p>
+                    <p><strong>Age:</strong> ${data.age}</p>
+                </div>
+            `;
+        }
+
+        // Function to display error messages on the page
+        function displayError(error) {
+            const container = document.getElementById('userDataContainer');
+            container.innerHTML = `<p class="error">${error}</p>`;
+        }
+
+        // Event listener for the button to fetch user data
+        document.getElementById('fetchDataButton').addEventListener('click', () => {
+            const userId = 1;  // For example, let's fetch user with ID 1
+            getUserData(userId);
+        });
+    </script>
+
+</body>
+</html>

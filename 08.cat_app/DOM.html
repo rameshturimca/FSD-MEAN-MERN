@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Example</title>
+</head>
+<body>
+    <div id="myDiv">Hello, world!</div>
+    <button onclick="changeText()">Change Text</button>
+
+    <script>
+        function changeText() {
+            // Directly manipulate the DOM to change the content of the div
+            document.getElementById("myDiv").innerHTML = "New text!";
+        }
+    </script>
+</body>
+</html>

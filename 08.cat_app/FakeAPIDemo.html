@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>Fetch Todo List Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #todoList {
+      margin-top: 20px;
+    }
+    .todo-item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Todo List Fetch Example</h1>
+  <button id="loadTodosBtn">Load Todos</button>
+  <div id="todoList"></div>
+
+  <script>
+    // The fake API endpoint for todos (using dummy data from a free service)
+    const TODOS_API_URL = 'https://dummyjson.com/todos'; // gives list of todos :contentReference[oaicite:0]{index=0}
+
+    // Function to fetch the todo list using fetch + Promises
+    function fetchTodos() {
+      return fetch(TODOS_API_URL)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok'); // handle HTTP errors
+          }
+          return response.json();
+        })
+        .then(data => {
+          // dummyjson returns an object with property "todos" which is the array :contentReference[oaicite:1]{index=1}
+          return data.todos;
+        });
+    }
+
+    // Function to display todos in the UI
+    function displayTodos(todos) {
+      const container = document.getElementById('todoList');
+      container.innerHTML = ''; // clear previous content
+
+      if (!todos || todos.length === 0) {
+        container.innerHTML = '<p>No todos found.</p>';
+        return;
+      }
+
+      todos.forEach(todo => {
+        const div = document.createElement('div');
+        div.className = 'todo-item' + (todo.completed ? ' completed' : '');
+        div.innerHTML = `<strong>ID:</strong> ${todo.id} &nbsp; <strong>Task:</strong> ${todo.todo} &nbsp; <strong>Completed:</strong> ${todo.completed}`;
+        container.appendChild(div);
+      });
+    }
+
+    // Function to show an error message in the UI
+    function displayError(error) {
+      const container = document.getElementById('todoList');
+      container.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+    }
+
+    // Set up button click to load todos
+    document.getElementById('loadTodosBtn').addEventListener('click', () => {
+      // show loading indicator
+      const container = document.getElementById('todoList');
+      container.innerHTML = '<p>Loading todos…</p>';
+
+      fetchTodos()
+        .then(todos => {
+          displayTodos(todos);
+        })
+        .catch(error => {
+          displayError(error);
+        });
+    });
+
+  </script>
+
+</body>
+</html>
