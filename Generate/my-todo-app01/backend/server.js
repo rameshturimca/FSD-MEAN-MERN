@@ -4,8 +4,12 @@ const axios = require("axios");
 
 const app = express();
 const PORT = 5000;
-
+const cors = require('cors');
+ 
 // Middleware
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 

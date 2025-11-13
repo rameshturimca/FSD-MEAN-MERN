@@ -13,3 +13,16 @@ npm install express cors
 To Run Node Project:  node server.js
 
 To run public url api: npm install axios
+
+Configure start:
+----------------
+under package.json file:
+"scripts": {
+  "start": "nodemon index.js"
+}
+
+"start": "dotenv -e .env node index.js"
+
+"scripts": {
+  "start": "concurrently \"npm run server\" \"npm run client\""
+}
