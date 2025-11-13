@@ -1,0 +1,6 @@
+npm install pg dotenv
+create .env
+mkdir config
+mkdir models
+npm install pool
+npm install express

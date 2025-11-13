@@ -1,3 +1,5 @@
+create database dbcustomer;
+use dbcustomer;
 -- 1. Create the table
 CREATE TABLE customers (
     customer_id SERIAL PRIMARY KEY,
@@ -9,6 +11,9 @@ CREATE TABLE customers (
     join_date DATE,
     total_spent NUMERIC(10, 2)
 );
+-- CREATE TABLE customers (customer_id SERIAL PRIMARY KEY, first_name VARCHAR(50), last_name VARCHAR(50), email VARCHAR(100), city VARCHAR(50), country VARCHAR(50), join_date DATE, total_spent NUMERIC(10, 2));
+
+
 
 -- 2. Insert 10 records
 INSERT INTO customers (first_name, last_name, email, city, country, join_date, total_spent)
