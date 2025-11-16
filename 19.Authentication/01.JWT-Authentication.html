@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>React JWT Login Test Demo</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #root { max-width: 400px; margin: 0 auto; }
+    input { width: 100%; padding: 8px; margin-bottom: 10px; }
+    button { padding: 8px 15px; }
+    .box { border: 1px solid #ccc; padding: 20px; border-radius: 5px; }
+    .error { color: red; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function App() {
+      const VALID_USER = "admin";          // <-- your test username
+      const VALID_PASS = "123456";         // <-- your test password
+
+      const [token, setToken] = React.useState(localStorage.getItem("jwt") || "");
+      const [username, setUsername] = React.useState("");
+      const [password, setPassword] = React.useState("");
+      const [error, setError] = React.useState("");
+
+      function login() {
+        if (username === VALID_USER && password === VALID_PASS) {
+          const fakeToken = btoa(JSON.stringify({ user: username, time: Date.now() }));
+          localStorage.setItem("jwt", fakeToken);
+          setToken(fakeToken);
+          setError("");
+        } else {
+          setError("Invalid username or password");
+        }
+      }
+
+      function logout() {
+        localStorage.removeItem("jwt");
+        setToken("");
+        setUsername("");
+        setPassword("");
+      }
+
+      if (!token) {
+        return (
+          <div className="box">
+            <h2>Login</h2>
+            {error && <div className="error">{error}</div>}
+            <input
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={login}>Login</button>
+
+            <p style={{marginTop:"10px", fontSize:"13px"}}>
+              <b>Test Credentials:</b><br/>
+              Username: <code>admin</code><br/>
+              Password: <code>123456</code>
+            </p>
+          </div>
+        );
+      }
+
+      const decoded = JSON.parse(atob(token));
+
+      return (
+        <div className="box">
+          <h2>Welcome</h2>
+          <p><b>User:</b> {decoded.user}</p>
+          <p><b>Token:</b> {token}</p>
+          <button onClick={logout}>Logout</button>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
