@@ -25,9 +25,9 @@ const AppDataSource = new DataSource({
   type: 'postgres',
   host: 'localhost',
   port: 5432,
-  username: 'postgres',        // 👈 update
-  password: '123',   // 👈 update
-  database: 'dbcustomer',   // 👈 update
+  username: 'postgres',       // 👈 update
+  password: '123',            // 👈 update
+  database: 'dbcustomer',     // 👈 update
   synchronize: false,
   logging: false,
   entities: [UserSchema],

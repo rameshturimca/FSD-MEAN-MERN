@@ -1,0 +1,83 @@
+.table-container {
+    width: 90%;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-row h2 {
+    margin: 0;
+    color: #333;
+}
+
+.add-btn {
+    padding: 10px 15px;
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: background 0.2s ease;
+}
+
+.add-btn:hover {
+    background: #1e7e34;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background: #f4f4f4;
+    font-weight: bold;
+}
+
+table tr:hover {
+    background: #f9f9f9;
+}
+
+/* ACTION BUTTONS */
+table a {
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+table a:hover {
+    text-decoration: underline;
+}
+
+table button {
+    padding: 6px 12px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+table button:hover {
+    background: #bb2d3b;
+}
