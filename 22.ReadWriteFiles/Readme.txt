@@ -10,9 +10,16 @@ CREATE TABLE iris (
 );
 
 
+
 Command Prompt:
 ---------------
 
+GET:
+curl -X GET http://localhost:3000 ^
+     -H "Accept: text/plain"
+
+
+POST:
 curl -X POST http://localhost:3000 ^
      -H "Content-Type: application/json" ^
      -d "{\"sepal.length\": 5.1, \"sepal.width\": 3.5, \"petal.length\": 1.4, \"petal.width\": 0.2, \"variety\": \"setosa\"}"
@@ -22,6 +29,11 @@ curl -X POST http://localhost:3000 ^
 
 Powershell Command:
 -------------------
+GET:
+curl -X GET http://localhost:3000 \
+     -H "Accept: text/plain"
+
+POST:
 curl -X POST http://localhost:3000 \
      -H "Content-Type: application/json" \
      -d "{\"sepal.length\": 5.1, \"sepal.width\": 3.5, \"petal.length\": 1.4, \"petal.width\": 0.2, \"variety\": \"setosa\"}"
